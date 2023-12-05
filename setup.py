@@ -10,44 +10,41 @@ import django_dkim
 
 def readme():
     """Return content of README file."""
-    with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as f:
+    with open(os.path.join(os.path.dirname(__file__), "README.rst")) as f:
         return f.read()
 
 
-INSTALL_REQUIRES = ['Django>=1.11', 'dkimpy', 'future']
-EXTRAS_REQUIRE = {'quality': ['flake8', 'isort', 'pydocstyle'],
-                  'test': ['mock']}
+INSTALL_REQUIRES = ["Django>=3.2", "dkimpy", "future"]
+EXTRAS_REQUIRE = {"quality": ["flake8", "isort", "pydocstyle"], "test": ["mock"]}
 
-setup(name='django-dkim',
-      version=django_dkim.__version__,
-      description='DKIM signing e-mail backend for Django',
-      long_description=readme(),
-      url='https://gitlab.com/stinovlas/django-dkim',
-      author='Jan Musílek',
-      author_email='stinovlas@gmail.com',
-      packages=find_packages(),
-      install_requires=INSTALL_REQUIRES,
-      extras_require=EXTRAS_REQUIRE,
-      python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
-      classifiers=[
-        'Development Status :: 4 - Beta',
-        'Environment :: Web Environment',
-        'Framework :: Django',
-        'Framework :: Django :: 2.2',
-        'Framework :: Django :: 3.0',
-        'Framework :: Django :: 3.1',
-        'Framework :: Django :: 3.2',
-        'Framework :: Django :: 4.0',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Topic :: Internet :: WWW/HTTP',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-      ])
+setup(
+    name="django-dkim",
+    version=django_dkim.__version__,
+    description="DKIM signing e-mail backend for Django",
+    long_description=readme(),
+    url="https://gitlab.com/stinovlas/django-dkim",
+    author="Jan Musílek",
+    author_email="stinovlas@gmail.com",
+    packages=find_packages(),
+    install_requires=INSTALL_REQUIRES,
+    extras_require=EXTRAS_REQUIRE,
+    python_requires=">=3.8, <4",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.2",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    ],
+)
