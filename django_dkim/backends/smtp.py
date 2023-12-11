@@ -18,7 +18,10 @@ class EmailBackend(SMTPEmailBackend):
         if not email_message.recipients():
             return False
         encoding = email_message.encoding or settings.DEFAULT_CHARSET
-        from_email = sanitize_address(email_message.from_email, encoding)
+        mail_from = email_message.from_email
+        if hasattr(settings, "EMAIL_SMTP_MAIL_FROM"):
+            mail_from = settings.EMAIL_SMTP_MAIL_FROM
+        smtp_mail_from = sanitize_address(mail_from, encoding)
         recipients = [
             sanitize_address(addr, encoding) for addr in email_message.recipients()
         ]
@@ -31,7 +34,9 @@ class EmailBackend(SMTPEmailBackend):
                 bytes(settings.DKIM_DOMAIN, "ascii"),
                 bytes(settings.DKIM_PRIVATE_KEY, "ascii"),
             )
-            self.connection.sendmail(from_email, recipients, signature + message_string)
+            self.connection.sendmail(
+                smtp_mail_from, recipients, signature + message_string
+            )
         except (smtplib.SMTPException, dkim.DKIMException):
             if not self.fail_silently:
                 raise
